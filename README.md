@@ -146,9 +146,3 @@ HealthCare/
 
 
 
-<p align="center">
-  Made with ❤️
-</p>
-=======
-# HealthcareSystem
->>>>>>> 5ff09e0c70f0bb9c8716f2aee94b0218da4b6ad6
