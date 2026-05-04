@@ -144,12 +144,7 @@ HealthCare/
 | Doctor | View patients, manage appointments, create prescriptions & records |
 | Patient | Book appointments, view own records and prescriptions |
 
-##  Author
-
-- GitHub: [@MazenMahmoud21](https://github.com/MazenMahmoud21)
-- GitHub: [@Hazem-esam](https://github.com/Hazem-esam)
-
----
+https://localhost:7217/
 
 <p align="center">
   Made with ❤️
