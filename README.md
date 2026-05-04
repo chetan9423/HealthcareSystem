@@ -85,7 +85,7 @@ A modern, full-featured healthcare management system built with ASP.NET Core MVC
 
 6. **Open in browser**
    ```
-   http://localhost:5049
+   https://localhost:7217/
    ```
 
 ## 🎥 Presentation
@@ -144,7 +144,7 @@ HealthCare/
 | Doctor | View patients, manage appointments, create prescriptions & records |
 | Patient | Book appointments, view own records and prescriptions |
 
-https://localhost:7217/
+
 
 <p align="center">
   Made with ❤️
