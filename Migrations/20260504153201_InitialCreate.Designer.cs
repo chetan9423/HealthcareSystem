@@ -3,6 +3,7 @@ using System;
 using HealthcareSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -11,46 +12,50 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthcareSystem.Migrations
 {
     [DbContext(typeof(HealthcareDbContext))]
-    [Migration("20251205091430_update")]
-    partial class update
+    [Migration("20260504153201_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("HealthcareSystem.Models.Appointment", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("AppointmentDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DoctorId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PatientId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Reason")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
@@ -64,42 +69,42 @@ namespace HealthcareSystem.Migrations
             modelBuilder.Entity("HealthcareSystem.Models.Doctor", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<double>("ConsultationFee")
+                    b.Property<decimal>("ConsultationFee")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Specialization")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -112,41 +117,41 @@ namespace HealthcareSystem.Migrations
             modelBuilder.Entity("HealthcareSystem.Models.MedicalRecord", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AppointmentId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Diagnosis")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DoctorId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PatientId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Symptoms")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Treatment")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("VisitDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -163,47 +168,47 @@ namespace HealthcareSystem.Migrations
             modelBuilder.Entity("HealthcareSystem.Models.Patient", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("BloodGroup")
                         .IsRequired()
                         .HasMaxLength(5)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -216,41 +221,41 @@ namespace HealthcareSystem.Migrations
             modelBuilder.Entity("HealthcareSystem.Models.Prescription", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("DoctorId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Dosage")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Duration")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Instructions")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MedicalRecordId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("MedicineName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PatientId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("PrescriptionDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -266,25 +271,25 @@ namespace HealthcareSystem.Migrations
             modelBuilder.Entity("HealthcareSystem.Models.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 

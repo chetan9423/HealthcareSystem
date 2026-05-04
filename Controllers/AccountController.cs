@@ -128,20 +128,21 @@ namespace HealthcareSystem.Controllers
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
 
-                // Create Patient Profile
-                var patient = new Patient
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserId = user.Id,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    DateOfBirth = model.DateOfBirth,
-                    Gender = model.Gender,
-                    Phone = model.Phone ?? string.Empty,
-                    Address = model.Address ?? string.Empty,
-                    BloodGroup = model.BloodGroup ?? string.Empty,
-                    CreatedAt = DateTime.Now
-                };
+                //Create Patient Profile
+               var patient = new Patient
+               {
+                   Id = Guid.NewGuid().ToString(),
+                   UserId = user.Id,
+                   FirstName = model.FirstName,
+                   LastName = model.LastName,
+                   DateOfBirth = model.DateOfBirth,
+                   Gender = model.Gender,
+                   Phone = model.Phone ?? string.Empty,
+                   Address = model.Address ?? string.Empty,
+                   BloodGroup = model.BloodGroup ?? string.Empty,
+                   CreatedAt = DateTime.Now
+               };
+               
 
                 _context.Patients.Add(patient);
                 await _context.SaveChangesAsync();
@@ -151,11 +152,15 @@ namespace HealthcareSystem.Controllers
                 TempData["Success"] = "Registration successful! Please login.";
                 return RedirectToAction("Login");
             }
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "Error during registration");
+            //    ModelState.AddModelError(string.Empty, "An error occurred during registration. Please try again.");
+            //    return View(model);
+            //}
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error during registration");
-                ModelState.AddModelError(string.Empty, "An error occurred during registration. Please try again.");
-                return View(model);
+                return Content(ex.InnerException?.Message ?? ex.Message);
             }
         }
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HealthcareSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class update : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,11 +15,11 @@ namespace HealthcareSystem.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Password = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    Role = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,15 +30,15 @@ namespace HealthcareSystem.Migrations
                 name: "Doctors",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Specialization = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    ConsultationFee = table.Column<double>(type: "decimal(18,2)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Specialization = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ConsultationFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,16 +55,16 @@ namespace HealthcareSystem.Migrations
                 name: "Patients",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Gender = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    Address = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    BloodGroup = table.Column<string>(type: "TEXT", maxLength: 5, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    BloodGroup = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,14 +81,14 @@ namespace HealthcareSystem.Migrations
                 name: "Appointments",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    PatientId = table.Column<string>(type: "TEXT", nullable: false),
-                    DoctorId = table.Column<string>(type: "TEXT", nullable: false),
-                    AppointmentDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    Reason = table.Column<string>(type: "TEXT", nullable: false),
-                    Notes = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PatientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -111,16 +111,16 @@ namespace HealthcareSystem.Migrations
                 name: "MedicalRecords",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    PatientId = table.Column<string>(type: "TEXT", nullable: false),
-                    DoctorId = table.Column<string>(type: "TEXT", nullable: false),
-                    AppointmentId = table.Column<string>(type: "TEXT", nullable: false),
-                    VisitDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Diagnosis = table.Column<string>(type: "TEXT", nullable: false),
-                    Symptoms = table.Column<string>(type: "TEXT", nullable: false),
-                    Treatment = table.Column<string>(type: "TEXT", nullable: false),
-                    Notes = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PatientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AppointmentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    VisitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Symptoms = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Treatment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,15 +149,15 @@ namespace HealthcareSystem.Migrations
                 name: "Prescriptions",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    MedicalRecordId = table.Column<string>(type: "TEXT", nullable: false),
-                    PatientId = table.Column<string>(type: "TEXT", nullable: false),
-                    DoctorId = table.Column<string>(type: "TEXT", nullable: false),
-                    MedicineName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Dosage = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Duration = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Instructions = table.Column<string>(type: "TEXT", nullable: false),
-                    PrescriptionDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MedicalRecordId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PatientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MedicineName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Dosage = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Duration = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Instructions = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrescriptionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

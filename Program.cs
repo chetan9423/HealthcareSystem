@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add DbContext with SQLite
+
 builder.Services.AddDbContext<HealthcareDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 // Add Password Hasher
